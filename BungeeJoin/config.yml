@@ -1,0 +1,8 @@
+strings:
+  login: '&5[BUNGEE-JOIN] &b[STAFF] %s &ejoined the network.'
+  logout: '&5[BUNGEE-JOIN] &b[STAFF] %s &eleft the network.'
+  loginnorm: '&5[BUNGEE-JOIN] &e%s left the network.'
+  logoutnorm: '&5[BUNGEE-JOIN] &e%s left the network.'
+delayedCheck:
+  enabled: false
+  seconds: 3
