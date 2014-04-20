@@ -1,12 +1,15 @@
 package io.github.itachi1706.BungeeJoin;
 
 import java.util.Collection;
+
 import net.craftminecraft.bungee.bungeeyaml.pluginapi.ConfigurablePlugin;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.connection.Server;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.event.PostLoginEvent;
+import net.md_5.bungee.api.event.ServerSwitchEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
@@ -64,6 +67,20 @@ public class Main extends ConfigurablePlugin implements Listener {
         		} else {
         			p.sendMessage(comNorm);
         		}
+        	}
+        }
+    }
+    
+    @EventHandler
+    public void onPlayerServerChange(ServerSwitchEvent e){
+    	ProxiedPlayer p = e.getPlayer();
+    	Server s = p.getServer();
+    	String msg = "&6[BUNGEE-SWITCH] &a" + p.getDisplayName() + " &ejoined &2" + s.getInfo().getName();
+    	TextComponent com = new TextComponent(ChatColor.translateAlternateColorCodes('&', msg));
+    	Collection<ProxiedPlayer> players = this.getProxy().getPlayers();
+        for (ProxiedPlayer pla : players){
+        	if (pla.hasPermission("bungeejoin.staff")){
+        		pla.sendMessage(com);
         	}
         }
     }
