@@ -1,9 +1,11 @@
 package io.github.itachi1706.BungeeJoin;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import net.craftminecraft.bungee.bungeeyaml.pluginapi.ConfigurablePlugin;
 import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.connection.Server;
@@ -20,15 +22,18 @@ public class Main extends ConfigurablePlugin implements Listener {
     protected String loginStringNorm;
     protected String logoutStringNorm;
     
+    public static ArrayList<BungPlayer> playerList = new ArrayList<BungPlayer>();
+    
     @Override
     public void onEnable()
     {
         this.loginString = this.getConfig().getString( "strings.login", "&5[BUNGEE-JOIN] &b[STAFF] %s &ejoined the network." );
-        this.logoutString = this.getConfig().getString( "strings.logout", "&5[BUNGEE-JOIN] &b[STAFF] %s &eleft the network." );
+        this.logoutString = this.getConfig().getString( "strings.logout", "&5[BUNGEE-LEAVE] &b[STAFF] %s &eleft the network." );
         this.loginStringNorm = this.getConfig().getString( "strings.login", "&5[BUNGEE-JOIN] &e%s joined the network." );
-        this.logoutStringNorm = this.getConfig().getString( "strings.logout", "&5[BUNGEE-JOIN] &e%s left the network." );
+        this.logoutStringNorm = this.getConfig().getString( "strings.logout", "&5[BUNGEE-LEAVE] &e%s left the network." );
         
         this.getProxy().getPluginManager().registerListener( this, this );
+        ProxyServer.getInstance().getPluginManager().registerCommand(this, new GMessaging(this));
     }
     
     @EventHandler
@@ -39,6 +44,7 @@ public class Main extends ConfigurablePlugin implements Listener {
     	TextComponent com = new TextComponent(loginmsg);
     	TextComponent comNorm = new TextComponent(loginmsgNorm);
         Collection<ProxiedPlayer> players = this.getProxy().getPlayers();
+        playerList.add(new BungPlayer(e.getPlayer()));
         for (ProxiedPlayer p : players){
         	if (p.hasPermission("bungeejoin.staff")){
         		if (e.getPlayer().hasPermission("bungeejoin.staff")){
@@ -60,6 +66,12 @@ public class Main extends ConfigurablePlugin implements Listener {
     	TextComponent com = new TextComponent(quitMsg);
     	TextComponent comNorm = new TextComponent(quitMsgNorm);
         Collection<ProxiedPlayer> players = this.getProxy().getPlayers();
+        for (int i = 0; i < playerList.size(); i++){
+        	BungPlayer ple = playerList.get(i);
+        	if (ple.getPlayer() == e.getPlayer()){
+        		playerList.remove(i);
+        	}
+        }
         for (ProxiedPlayer p : players){
         	if (p.hasPermission("bungeejoin.staff")){
         		if (e.getPlayer().hasPermission("bungeejoin.staff")){

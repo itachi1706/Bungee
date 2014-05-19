@@ -1,0 +1,3 @@
+Work on ReplyMsg
+Have a global chat
+Get the server check working (getInfo().getName())
