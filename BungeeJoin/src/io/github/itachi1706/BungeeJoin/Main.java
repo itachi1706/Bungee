@@ -27,10 +27,10 @@ public class Main extends ConfigurablePlugin implements Listener {
     @Override
     public void onEnable()
     {
-        this.loginString = this.getConfig().getString( "strings.login", "&5[BUNGEE-JOIN] &b[STAFF] %s &ejoined the network." );
-        this.logoutString = this.getConfig().getString( "strings.logout", "&5[BUNGEE-LEAVE] &b[STAFF] %s &eleft the network." );
-        this.loginStringNorm = this.getConfig().getString( "strings.login", "&5[BUNGEE-JOIN] &e%s joined the network." );
-        this.logoutStringNorm = this.getConfig().getString( "strings.logout", "&5[BUNGEE-LEAVE] &e%s left the network." );
+        this.loginString = this.getConfig().getString( "strings.login", "&5[BUNGEE-&aJOIN&5] &b[STAFF] %s &ejoined the network." );
+        this.logoutString = this.getConfig().getString( "strings.logout", "&5[BUNGEE-&cLEAVE&5] &b[STAFF] %s &eleft the network." );
+        this.loginStringNorm = this.getConfig().getString( "strings.login", "&5[BUNGEE-&aJOIN&5] &e%s joined the network." );
+        this.logoutStringNorm = this.getConfig().getString( "strings.logout", "&5[BUNGEE-&cLEAVE&5] &e%s left the network." );
         
         this.getProxy().getPluginManager().registerListener( this, this );
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new GMessaging(this));

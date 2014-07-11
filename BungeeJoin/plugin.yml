@@ -1,5 +1,5 @@
 name: BungeeJoin
 main: io.github.itachi1706.BungeeJoin.Main
-version: 1
+version: 1.1
 author: itachi1706
 depends: ['BungeeYAML']
