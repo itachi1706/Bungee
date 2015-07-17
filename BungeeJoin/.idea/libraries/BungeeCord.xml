@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="BungeeCord">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../Local Libraries/Bungee/BungeeCord.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../Local Libraries/Bungee/BungeeYAML.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="http://ci.md-5.net/job/BungeeCord/ws/api/target/apidocs" />
+    </JAVADOC>
+    <NATIVE>
+      <root url="jar://$PROJECT_DIR$/../../../Local Libraries/Bungee/BungeeCord.jar!/" />
+    </NATIVE>
+    <SOURCES />
+  </library>
+</component>
